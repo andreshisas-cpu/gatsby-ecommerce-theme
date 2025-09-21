@@ -1,146 +1,117 @@
+// src/pages/index.js
 import * as React from 'react';
 
-import AttributeGrid from '../components/AttributeGrid';
 import Container from '../components/Container';
 import Hero from '../components/Hero';
-import BlogPreviewGrid from '../components/BlogPreviewGrid';
 import Highlight from '../components/Highlight';
 import Layout from '../components/Layout/Layout';
 import ProductCollectionGrid from '../components/ProductCollectionGrid';
-import ProductCardGrid from '../components/ProductCardGrid';
-import Quote from '../components/Quote';
 import Title from '../components/Title';
 
-import { generateMockBlogData, generateMockProductData } from '../helpers/mock';
-
 import * as styles from './index.module.css';
-import { Link, navigate } from 'gatsby';
+import { navigate } from 'gatsby';
 import { toOptimizedImage } from '../helpers/general';
 
-const IndexPage = () => {
-  const newArrivals = generateMockProductData(3, 'shirt');
-  const blogData = generateMockBlogData(3);
+// 1) Cambia por tu número en formato internacional sin "+"
+const WHATSAPP = '593XXXXXXXXX';
 
-  const goToShop = () => {
-    navigate('/shop');
+const IndexPage = () => {
+  const goToShop = () => navigate('/shop');
+
+  // 2) CTA directa a WhatsApp con mensaje inicial
+  const goToWhatsApp = () => {
+    const msg = encodeURIComponent(
+      'Hola, quiero pedir pan de masa madre. ¿Tienen disponibilidad para hoy?'
+    );
+    if (typeof window !== 'undefined') {
+      window.open(`https://wa.me/${WHATSAPP}?text=${msg}`, '_blank');
+    }
   };
 
   return (
     <Layout disablePaddingBottom>
-      {/* Hero Container */}
+      {/* HERO: portada en español */}
       <Hero
-        maxWidth={'500px'}
-        image={'/banner1.png'}
-        title={'Essentials for a cold winter'}
-        subtitle={'Discover Autumn Winter 2021'}
-        ctaText={'shop now'}
-        ctaAction={goToShop}
+        maxWidth={'560px'}
+        image={'/banner1.png'} // Sube tu imagen a /static/banner1.png
+        title={'Pan de masa madre artesanal'}
+        subtitle={'Horneamos por encargo en [Ciudad]. Ingredientes simples, fermentación larga y corteza crujiente.'}
+        ctaText={'Pedir por WhatsApp'}
+        ctaAction={goToWhatsApp}
       />
 
-      {/* Message Container */}
+      {/* Mensaje corto */}
       <div className={styles.messageContainer}>
         <p>
-          This is a demonstration of the Sydney theme for verse by{' '}
-          <span className={styles.gold}>matter design.</span>
+          Fermentación lenta, harina de calidad y masa madre 100%. Pan fresco del día.
         </p>
-        <p>
-          wear by <span className={styles.gold}>sunspel</span> and{' '}
-          <span className={styles.gold}>scotch&soda</span>
+        <p className={styles.gold}>
+          Encargos hasta las 19:00 para hornear al día siguiente.
         </p>
       </div>
 
-      {/* Collection Container */}
+      {/* Colecciones / categorías (mantiene el grid del tema) */}
       <div className={styles.collectionContainer}>
         <Container size={'large'}>
-          <Title name={'New Collection'} />
+          <Title name={'Nuestros panes'} />
           <ProductCollectionGrid />
         </Container>
       </div>
 
-      {/* New Arrivals */}
-      <div className={styles.newArrivalsContainer}>
-        <Container>
-          <Title name={'New Arrivals'} link={'/shop'} textLink={'view all'} />
-          <ProductCardGrid
-            spacing={true}
-            showSlider
-            height={480}
-            columns={3}
-            data={newArrivals}
-          />
-        </Container>
-      </div>
-
-      {/* Highlight  */}
+      {/* Cómo comprar (segundo bloque con botón) */}
       <div className={styles.highlightContainer}>
         <Container size={'large'} fullMobile>
           <Highlight
-            image={'/highlight.png'}
-            altImage={'highlight image'}
-            miniImage={'/highlightmin.png'}
-            miniImageAlt={'mini highlight image'}
-            title={'Luxury Knitwear'}
-            description={`This soft lambswool jumper is knitted in Scotland, using yarn from one of the world's oldest spinners based in Fife`}
-            textLink={'shop now'}
-            link={'/shop'}
+            image={toOptimizedImage('/highlight.png')} // /static/highlight.png
+            altImage={'Cómo comprar'}
+            miniImage={toOptimizedImage('/highlightmin.png')}
+            miniImageAlt={'Detalle'}
+            title={'Cómo comprar'}
+            description={
+              'Elige tus panes, confirma por WhatsApp y recibe en franja horaria. Retiro en punto o envío local.'
+            }
+            textLink={'Confirmar por WhatsApp'}
+            link={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
+              'Hola, quiero hacer un pedido de pan de masa madre.'
+            )}`}
           />
         </Container>
       </div>
 
-      {/* Promotion */}
+      {/* Promo simple para la tienda interna (opcional) */}
       <div className={styles.promotionContainer}>
-        <Hero image={toOptimizedImage('/banner2.png')} title={`-50% off \n All Essentials`} />
-        <div className={styles.linkContainers}>
-          <Link to={'/shop'}>WOMAN</Link>
-          <Link to={'/shop'}>MAN</Link>
-        </div>
-      </div>
-
-      {/* Quote */}
-      <Quote
-        bgColor={'var(--standard-light-grey)'}
-        title={'about Sydney'}
-        quote={
-          '“We believe in two things: the pursuit of quality in everything we do, and looking after one another. Everything else should take care of itself.”'
-        }
-      />
-
-      {/* Blog Grid */}
-      <div className={styles.blogsContainer}>
-        <Container size={'large'}>
-          <Title name={'Journal'} subtitle={'Notes on life and style'} />
-          <BlogPreviewGrid data={blogData} />
-        </Container>
-      </div>
-
-      {/* Promotion */}
-      <div className={styles.sustainableContainer}>
         <Hero
-          image={toOptimizedImage('/banner3.png')}
-          title={'We are Sustainable'}
-          subtitle={
-            'From caring for our land to supporting our people, discover the steps we’re taking to do more for the world around us.'
-          }
-          ctaText={'read more'}
-          maxWidth={'660px'}
-          ctaStyle={styles.ctaCustomButton}
+          image={toOptimizedImage('/banner2.png')}
+          title={'Ver catálogo completo'}
+          subtitle={'Si prefieres navegar el catálogo del sitio, entra a la tienda.'}
+          ctaText={'Ver productos'}
+          ctaAction={goToShop}
+          maxWidth={'520px'}
         />
       </div>
 
-      {/* Social Media */}
-      <div className={styles.socialContainer}>
-        <Title
-          name={'Styled by You'}
-          subtitle={'Tag @sydney to be featured.'}
-        />
-        <div className={styles.socialContentGrid}>
-          <img src={toOptimizedImage(`/social/socialMedia1.png`)} alt={'social media 1'} />
-          <img src={toOptimizedImage(`/social/socialMedia2.png`)} alt={'social media 2'} />
-          <img src={toOptimizedImage(`/social/socialMedia3.png`)} alt={'social media 3'} />
-          <img src={toOptimizedImage(`/social/socialMedia4.png`)} alt={'social media 4'} />
-        </div>
-      </div>
-      <AttributeGrid />
+      {/* Botón flotante de WhatsApp (siempre visible) */}
+      <a
+        href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
+          'Hola, quiero pedir pan de masa madre.'
+        )}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          position: 'fixed',
+          right: 16,
+          bottom: 16,
+          background: '#25D366',
+          color: '#fff',
+          padding: '12px 16px',
+          borderRadius: 999,
+          fontWeight: 700,
+          zIndex: 999,
+          textDecoration: 'none'
+        }}
+      >
+        WhatsApp
+      </a>
     </Layout>
   );
 };
