@@ -33,7 +33,7 @@ const IndexPage = () => {
       {/* HERO: portada en español */}
       <Hero
         maxWidth={'560px'}
-        image={'/banner1.png'} // Sube tu imagen a /static/banner1.png
+        image={'/pan.png'} // Sube tu imagen a /static/banner1.png
         title={'Pan de masa madre artesanal'}
         subtitle={'Solicita por encargo en Tena-Napo. Ingredientes simples, fermentación larga y corteza crujiente.'}
         ctaText={'Pedir por WhatsApp'}
