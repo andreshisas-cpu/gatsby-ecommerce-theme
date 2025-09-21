@@ -1,7 +1,6 @@
 // src/pages/index.js
 import * as React from 'react';
 
-import Container from '../components/Container';
 import Hero from '../components/Hero';
 import Highlight from '../components/Highlight';
 import Layout from '../components/Layout/Layout';
