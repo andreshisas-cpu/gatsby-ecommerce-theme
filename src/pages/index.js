@@ -13,7 +13,7 @@ import { navigate } from 'gatsby';
 import { toOptimizedImage } from '../helpers/general';
 
 // 1) Cambia por tu número en formato internacional sin "+"
-const WHATSAPP = '593XXXXXXXXX';
+const WHATSAPP = '593961954607';
 
 const IndexPage = () => {
   const goToShop = () => navigate('/shop');
@@ -21,7 +21,7 @@ const IndexPage = () => {
   // 2) CTA directa a WhatsApp con mensaje inicial
   const goToWhatsApp = () => {
     const msg = encodeURIComponent(
-      'Hola, quiero pedir pan de masa madre. ¿Tienen disponibilidad para hoy?'
+      'Hola, quiero pedir pan de masa madre'
     );
     if (typeof window !== 'undefined') {
       window.open(`https://wa.me/${WHATSAPP}?text=${msg}`, '_blank');
@@ -35,7 +35,7 @@ const IndexPage = () => {
         maxWidth={'560px'}
         image={'/banner1.png'} // Sube tu imagen a /static/banner1.png
         title={'Pan de masa madre artesanal'}
-        subtitle={'Horneamos por encargo en [Ciudad]. Ingredientes simples, fermentación larga y corteza crujiente.'}
+        subtitle={'Solicita por encargo en Tena-Napo. Ingredientes simples, fermentación larga y corteza crujiente.'}
         ctaText={'Pedir por WhatsApp'}
         ctaAction={goToWhatsApp}
       />
@@ -46,7 +46,7 @@ const IndexPage = () => {
           Fermentación lenta, harina de calidad y masa madre 100%. Pan fresco del día.
         </p>
         <p className={styles.gold}>
-          Encargos hasta las 19:00 para hornear al día siguiente.
+          Encargos hasta las 22:00 para hornear al día siguiente.
         </p>
       </div>
 
