@@ -56,7 +56,7 @@ export default function IndexPage() {
       <header style={styles.header}>
         <a href="#inicio" style={styles.brand}>
           <div style={styles.logo}>MM</div>
-          <strong>KéfirCos Artesanal</strong>
+          <strong>Pan Artesanal</strong>
         </a>
         <nav style={styles.nav}>
           <a href="#productos">Productos</a>
@@ -185,7 +185,7 @@ export default function IndexPage() {
       </a>
 
       <footer style={styles.footer}>
-        © {new Date().getFullYear()} KéfirCos Artesanal · Pan de Masa Madre
+        © {new Date().getFullYear()} María Lucía · Pan de Masa Madre
       </footer>
     </main>
   );
@@ -193,7 +193,7 @@ export default function IndexPage() {
 
 export const Head = () => (
   <>
-    <title>KéfirCos Artesanal | Pan de Masa Madre</title>
+    <title>Pan Artesanal | Pan de Masa Madre</title>
     <meta
       name="description"
       content="Pan de masa madre artesanal horneado por encargo. Pide por WhatsApp."
