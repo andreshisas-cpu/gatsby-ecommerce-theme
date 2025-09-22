@@ -45,7 +45,7 @@ const IndexPage = () => {
           Fermentación lenta, harina de calidad y masa madre 100%. Pan fresco del día.
         </p>
         <p className={styles.gold}>
-          Encargos hasta las 22:00 para hornear al día siguiente.
+          Encargos hasta las 20:00 para hornear al día siguiente.
         </p>
       </div>
 
